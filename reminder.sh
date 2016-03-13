@@ -17,6 +17,27 @@ SCount='0'
 # Store the specific time string that user input
 tString=''
 
+ShowHelp()
+{
+	echo -e "\n\e[1m############################# HELP #############################\e[0m\n"
+	echo -e "\e[1mNAME\e[0m"
+	echo -e "    \e[1mreminder\e[0m - Remind user after specific time\n"
+	echo -e "\e[1mSYNOPSIS\e[0m"
+	echo -e "    \e[1mreminder\e[0m [\e[1m-t\e[0m \e[4m\e[3mtime\e[0m] [\e[1m-H\e[0m \e[4m\e[3mhour\e[0m] [\e[1m-M\e[0m \e[3m\e[4mminute\e[0m]\
+ [\e[1m-S\e[0m \e[3m\e[4msecond\e[0m] [\e[1m-h\e[0m]\n"
+	echo -e "\e[1mOptions\e[0m\n"
+	echo -e "  \e[1m-h\e[0m\n     Show help and exit\n"
+	echo -e "  \e[1m-t\e[0m \e[3m\e[4mtime\e[0m"
+	echo -e "     Remind user at \e[3m\e[4mtime\e[0m"
+	echo -e "     (\e[1m-t\e[0m can't appear with [\e[1m-H\e[0m|\e[1m-M\e[0m|\e[1m-S\e[0m] simultaneously)\n"
+	echo -e "  \e[1m-H\e[0m \e[3m\e[4mhour\e[0m"
+	echo -e "     Remind user after \e[3m\e[4mhour\e[0m hour(s)\n"
+	echo -e "  \e[1m-M\e[0m \e[3m\e[4mminute\e[0m"
+	echo -e "     Remind user after \e[3m\e[4mminute\e[0m minute(s)\n"
+	echo -e "  \e[1m-S\e[0m \e[3m\e[4msecond\e[0m"
+	echo -e "     Remind user after \e[3m\e[4msecond\e[0m second(s)\n"
+	echo -e "\n\e[1m################################################################\e[0m\n"
+}
 
 TerminalNotify()
 {
@@ -86,7 +107,8 @@ fi
 # 'HELP' flag is set
 if [ "$hFlag" == "1" ]
 then
-	echo "Show help"
+	clear
+	ShowHelp
 	exit 0
 fi
 
@@ -108,7 +130,10 @@ then
 	fi
 
 	sleep ${HCount}h ${MCount}m ${SCount}s 
+
 	clear
+
+	# Reminder user in terminal
 	for i in `who`
 	do
 		if echo $i | grep -q 'pts'
@@ -117,6 +142,8 @@ then
 			TerminalNotify $i
 		fi
 	done
+
+	# Play music and remind user on desktop
 	PlayMusic | DesktopNotify 
 
 # Use specific time
@@ -178,5 +205,19 @@ else
 	fi
 
 	sleep ${DiffSecond}s
-fi
 
+	clear
+
+	# Reminder user in terminal
+	for i in `who`
+	do
+		if echo $i | grep -q 'pts'
+		then
+			i='/dev/'$i
+			TerminalNotify $i
+		fi
+	done
+
+	# Play music and reminder user on desktop
+	PlayMusic | DesktopNotify 
+fi
