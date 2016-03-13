@@ -1,5 +1,5 @@
 # NAME
-&nbsp;&nbsp;&nbsp;**reminder** - Remind user after specific time
+&nbsp;&nbsp;&nbsp;**reminder** - Remind user after a specific time on Ubuntu Linux
 
 # SYNOPSIS
 &nbsp;&nbsp;&nbsp;**reminder** [**-t** <u>*time*</u>] [**-H** <u>*hour*</u>] [**-M** <u>_minute_</u>] [**-S** <u>_second_</u>] [**-h**]
