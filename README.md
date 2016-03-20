@@ -29,6 +29,12 @@ Before use this program, you should give the file `reminder` execute permission:
 ```bash      
 $ chmod u+x reminder           
 ```
+Install `mpg123`:         
+        
+```bash
+$ sudo apt-get update
+$ sudo apt-get install mpg123
+```
 
 ## Example        
 **See help**         
