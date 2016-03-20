@@ -29,7 +29,7 @@ Before use this program, you should give the file `reminder` execute permission:
 ```bash      
 $ chmod u+x reminder           
 ```
-Install `mpg123`:         
+And you also should install `mpg123` to play music:         
         
 ```bash
 $ sudo apt-get update
