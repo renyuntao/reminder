@@ -60,7 +60,7 @@ DesktopNotify()
 
 PlayMusic()
 {
-	MusicPath='/home/ryt/Reminder/MarsBattle.mp3'
+	MusicPath='./MarsBattle.mp3'
 	mpg123 -q $MusicPath
 }
 
