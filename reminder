@@ -19,7 +19,7 @@ tString=''
 
 ShowHelp()
 {
-	echo -e "\n\e[1m############################# HELP #############################\e[0m\n"
+	echo -e "\n\e[1m############################### HELP ###############################\e[0m\n"
 	echo -e "\e[1mNAME\e[0m"
 	echo -e "    \e[1mreminder\e[0m - Remind user after specific time\n"
 	echo -e "\e[1mSYNOPSIS\e[0m"
@@ -35,8 +35,9 @@ ShowHelp()
 	echo -e "  \e[1m-M\e[0m \e[3m\e[4mminute\e[0m"
 	echo -e "     Remind user after \e[3m\e[4mminute\e[0m minute(s)\n"
 	echo -e "  \e[1m-S\e[0m \e[3m\e[4msecond\e[0m"
-	echo -e "     Remind user after \e[3m\e[4msecond\e[0m second(s)\n"
-	echo -e "\n\e[1m################################################################\e[0m\n"
+	echo -e "     Remind user after \e[3m\e[4msecond\e[0m second(s)\n\n\n"
+	echo -e "Refer \e[1mhttps://github.com/renyuntao/reminder\e[0m for more information."
+	echo -e "\n\e[1m####################################################################\e[0m\n"
 }
 
 TerminalNotify()
@@ -148,7 +149,6 @@ then
 
 # Use specific time
 else
-	echo "$tString"	
 	time_arr=(${tString//:/ })
 
 	# Strip time_arr[0]'s prefix 0
@@ -169,7 +169,6 @@ else
 		time_arr[2]=$(echo ${time_arr[2]} | cut -c 2)
 	fi
 
-	echo "Hours:${time_arr[0]}  Minutes:${time_arr[1]}  Seconds:${time_arr[2]}"
 	FutrTotalSecond=$((${time_arr[0]}*3600 + ${time_arr[1]}*60 + ${time_arr[2]}))
 	curr_hour=$(date +%H)
 	curr_minute=$(date +%M)
@@ -196,7 +195,6 @@ else
 	CurrTotalSecond=$((${curr_hour}*3600+${curr_minute}*60+${curr_second}))
 	DiffSecond=$((${FutrTotalSecond}-${CurrTotalSecond}))
 
-	echo "DiffSecond: $DiffSecond"
 
 	if [ "$DiffSecond" -lt "0" ]
 	then
